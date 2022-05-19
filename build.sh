@@ -41,19 +41,6 @@ do
   docker push ghcr.io/mabels/kubectl:$version-$(basename $i)-debian-buster
 done
 
-<<<<<<< HEAD
-docker manifest create $REPO/mabels/kubectl:$version \
-	--amend $REPO/mabels/kubectl:$version-amd64 \
-	--amend $REPO/mabels/kubectl:$version-arm64 \
-	--amend $REPO/mabels/kubectl:$version-arm
-docker manifest push $REPO/mabels/kubectl:$version
-||||||| parent of 67a3e3d (chore: ubuntu and debian build)
-docker manifest create ghcr.io/mabels/kubectl:$version \
-	--amend ghcr.io/mabels/kubectl:$version-amd64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm
-docker manifest push ghcr.io/mabels/kubectl:$version
-=======
 for i in ubuntu-jammy debian-buster
 do
 	docker manifest create ghcr.io/mabels/kubectl:$version-$i \
@@ -68,25 +55,10 @@ do
 		--amend ghcr.io/mabels/kubectl:$version-$i-arm
 	docker manifest push ghcr.io/mabels/kubectl:latest-$i
 done
->>>>>>> 67a3e3d (chore: ubuntu and debian build)
 
-<<<<<<< HEAD
-docker manifest create $REPO/mabels/kubectl:latest \
-	--amend $REPO/mabels/kubectl:$version-amd64 \
-	--amend $REPO/mabels/kubectl:$version-arm64 \
-	--amend $REPO/mabels/kubectl:$version-arm
-docker manifest push $REPO/mabels/kubectl:latest
-||||||| parent of 67a3e3d (chore: ubuntu and debian build)
-docker manifest create ghcr.io/mabels/kubectl:latest \
-	--amend ghcr.io/mabels/kubectl:$version-amd64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm
-docker manifest push ghcr.io/mabels/kubectl:latest
-=======
 docker manifest create ghcr.io/mabels/kubectl:latest \
 	--amend ghcr.io/mabels/kubectl:$version-ubuntu-jammy-amd64 \
 	--amend ghcr.io/mabels/kubectl:$version-ubuntu-jammy-arm64 \
 	--amend ghcr.io/mabels/kubectl:$version-ubuntu-jammy-arm
 docker manifest push ghcr.io/mabels/kubectl:latest
->>>>>>> 67a3e3d (chore: ubuntu and debian build)
 
