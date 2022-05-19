@@ -44,21 +44,21 @@ done
 for i in ubuntu-jammy debian-buster
 do
 	docker manifest create $REPO/kubectl:$version-$i \
-		--amend $REPO/kubectl:$version-$i-amd64 \
-		--amend $REPO/kubectl:$version-$i-arm64 \
-		--amend $REPO/kubectl:$version-$i-arm
+		--amend $REPO/kubectl:$version-amd64-$i \
+		--amend $REPO/kubectl:$version-arm64-$i \
+		--amend $REPO/kubectl:$version-arm-$i
 	docker manifest push $REPO/kubectl:$version-$i
 
 	docker manifest create $REPO/kubectl:latest-$i \
-		--amend $REPO/kubectl:$version-$i-amd64 \
-		--amend $REPO/kubectl:$version-$i-arm64 \
-		--amend $REPO/kubectl:$version-$i-arm
+		--amend $REPO/kubectl:$version-amd64-$i \
+		--amend $REPO/kubectl:$version-arm64-$i \
+		--amend $REPO/kubectl:$version-arm-$i
 	docker manifest push $REPO/kubectl:latest-$i
 done
 
 docker manifest create $REPO/kubectl:latest \
-	--amend $REPO/kubectl:$version-ubuntu-jammy-amd64 \
-	--amend $REPO/kubectl:$version-ubuntu-jammy-arm64 \
-	--amend $REPO/kubectl:$version-ubuntu-jammy-arm
+	--amend $REPO/kubectl:$version-amd64-ubuntu-jammy \
+	--amend $REPO/kubectl:$version-arm64-ubuntu-jammy \
+	--amend $REPO/kubectl:$version-arm-ubuntu-jammy
 docker manifest push $REPO/kubectl:latest
 
