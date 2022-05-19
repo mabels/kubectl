@@ -40,6 +40,6 @@ jobs:
       - shell: bash
         name: build.sh
         run: |
-          bash -x build.sh
+          bash -xe build.sh
 
 
