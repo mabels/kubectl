@@ -1,0 +1,25 @@
+{
+  "name": "kubectl",
+  "version": "1.0.0",
+  "description": "build helper",
+  "main": "latest_versions.js",
+  "scripts": {
+    "latest": "node latest_versions.js"
+  },
+  "dependencies": {
+    "semver": "^7.3.4",
+    "yaml": "^1.10.2",
+    "yargs": "^17.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mabels/kubectl.git"
+  },
+  "author": "",
+  "license": "AFL2",
+  "bugs": {
+    "url": "https://github.com/mabels/kubectl/issues"
+  },
+  "homepage": "https://github.com/mabels/kubectl#readme"
+}
