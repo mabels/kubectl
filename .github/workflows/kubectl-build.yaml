@@ -37,5 +37,6 @@ jobs:
       - shell: bash
         name: build.sh
         run: |
-          sh build.sh
+          bash -x build.sh
+
 
