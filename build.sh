@@ -1,3 +1,5 @@
+REPO=public.ecr.aws
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
 npm i
 eval $(node latest_versions.js "kubernetes/kubernetes")
 version=$KUBERNETES_KUBERNETES_VERSION
@@ -25,19 +27,19 @@ do
   then
 	i=linux/arm
   fi 
-  docker buildx build -t ghcr.io/mabels/kubectl:$version-$(basename $i)  --platform $i -f ./Dockerfile ./_output/local/bin/$i 
-  docker push ghcr.io/mabels/kubectl:$version-$(basename $i)
+  docker buildx build -t $REPO/mabels/kubectl:$version-$(basename $i)  --platform $i -f ./Dockerfile ./_output/local/bin/$i 
+  docker push $REPO/mabels/kubectl:$version-$(basename $i)
 done
 
-docker manifest create ghcr.io/mabels/kubectl:$version \
-	--amend ghcr.io/mabels/kubectl:$version-amd64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm
-docker manifest push ghcr.io/mabels/kubectl:$version
+docker manifest create $REPO/mabels/kubectl:$version \
+	--amend $REPO/mabels/kubectl:$version-amd64 \
+	--amend $REPO/mabels/kubectl:$version-arm64 \
+	--amend $REPO/mabels/kubectl:$version-arm
+docker manifest push $REPO/mabels/kubectl:$version
 
-docker manifest create ghcr.io/mabels/kubectl:latest \
-	--amend ghcr.io/mabels/kubectl:$version-amd64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm64 \
-	--amend ghcr.io/mabels/kubectl:$version-arm
-docker manifest push ghcr.io/mabels/kubectl:latest
+docker manifest create $REPO/mabels/kubectl:latest \
+	--amend $REPO/mabels/kubectl:$version-amd64 \
+	--amend $REPO/mabels/kubectl:$version-arm64 \
+	--amend $REPO/mabels/kubectl:$version-arm
+docker manifest push $REPO/mabels/kubectl:latest
 
