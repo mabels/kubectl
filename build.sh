@@ -8,6 +8,7 @@ git clone -b $version --depth 1 https://github.com/kubernetes/kubernetes.git
 cd kubernetes 
 git clean -f
 BUILD_ARCHS="linux/amd64 linux/arm64 linux/arm"
+export CGO_ENABLED=0
 make clean kubectl KUBE_BUILD_PLATFORMS="$BUILD_ARCHS" KUBE_GIT_VERSION=$version \
 	KUBE_GIT_MAJOR=$(echo $version | sed -e 's/^[^0-9]*\([0-9][0-9]*\)\..*$/\1/') \
 	KUBE_GIT_MINOR=$(echo $version | sed -e 's/^[^\.][^\.]*\.\([0-9][0-9]*\)\..*$/\1/') \
